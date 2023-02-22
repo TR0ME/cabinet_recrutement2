@@ -64,6 +64,17 @@ public class Candidat  implements java.io.Serializable {
         this.niveauQualification = byId;
         this.secteurActivites = liste_secteurs;
     }
+
+    public Candidat(String prenom, String nom, String adresseMail, String adresseP, String cv, Date dateDepot, Date naissance, NiveauQualification niveauQualification){
+        this.prenom = prenom;
+        this.nom = nom;
+        this.adresseEmail = adresseMail;
+        this.adressePostale = adresseP;
+        this.cv = cv;
+        this.dateDepot = dateDepot;
+        this.dateNaissance = naissance;
+        this.niveauQualification = niveauQualification;
+    }
 //@Column(name="id_candidat", unique=true, nullable=false)
     @Id
      @SequenceGenerator(name="CANDIDAT_ID_GENERATOR", sequenceName="CANDIDAT_ID_SEQ", allocationSize=1)

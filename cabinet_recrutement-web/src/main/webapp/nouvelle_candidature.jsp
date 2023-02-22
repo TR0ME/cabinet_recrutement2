@@ -18,11 +18,11 @@
 <%@ page import="java.io.PrintWriter" %>
 
 <%
-    IServiceCandidat serviceCandidature = (IServiceCandidat) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
-    List<Candidat> candidatures = serviceCandidature.listeCandidat();
-    List<NiveauQualification> niveauqualif = serviceCandidature.listeNiveauQualification();
-    List<SecteurActivite> secteurActs = serviceCandidature.listeSecteurs();
-    IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteur");
+    IServiceCandidat serviceCandidat = (IServiceCandidat) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidat");
+    List<Candidat> candidatures = serviceCandidat.listeCandidat();
+    List<NiveauQualification> niveauqualif = serviceCandidat.listeNiveauQualification();
+    List<SecteurActivite> secteurActs = serviceCandidat.listeSecteurs();
+    IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteurActivite");
 %>
 <!-- base code demo -->
 <div class="row">
@@ -133,26 +133,26 @@
                     request.getParameter("adresse_email"),
                     request.getParameter("adresse_postale"),
                     request.getParameter("cv"),
-                    serviceCandidature.getCurrentDate(),
-                    serviceCandidature.convertDate(request.getParameter("date_naissance")),
-                    serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau")))
+                    serviceCandidat.getCurrentDate(),
+                    serviceCandidat.convertDate(request.getParameter("date_naissance")),
+                    serviceCandidat.findNQByID(Integer.parseInt(request.getParameter("niveau")))
             );
-            cand_ok = serviceCandidature.execPersist(cand_ok);
+            cand_ok = serviceCandidat.execPersist(cand_ok);
             //out.println("iDDDDDDDDDDDDDDDDDDDDDDD = "+cand_ok.getId());
-            serviceCandidature.majSecteursActivites(request.getParameterValues("secteur"), cand_ok.getIdCandidat());
+            serviceCandidat.majSecteursActivites(request.getParameterValues("secteur"), cand_ok.getIdCandidat());
             //rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
-            out.println("<h1 style=\"color: green;text-align: center\"> Candidature ajoutée ! </h1>");
+            System.out.println("<h1 style=\"color: green;text-align: center\"> Candidature ajoutée ! </h1>");
 
         } else {
             if (!request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")
                     && request.getParameter("date_naissance").length() > 0) {
-                out.println("<h2 style=\"color: red;text-align: center\"> Date  au incorrecte !  (jj/mm/aaaa) ! </h2>");
+                System.out.println("<h2 style=\"color: red;text-align: center\"> Date  au incorrecte !  (jj/mm/aaaa) ! </h2>");
             } else if (!request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
                     && request.getParameter("adresse_email").length() > 0) {
-                out.println(
+                System.out.println(
                         "<h2 style=\"color: red;text-align: center\"> adresse email incorrecte ! (exemple@fournisseur.ex) </h2>");
             } else
-                out.println("<h2 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h2>");
+                System.out.println("<h2 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h2>");
         }
     }
 %>

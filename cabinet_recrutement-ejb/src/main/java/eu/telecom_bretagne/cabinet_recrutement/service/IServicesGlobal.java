@@ -12,8 +12,8 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Interface du service gérant les fonctions generiques.
- * @author Elouan LE DUC
- * @author Clement LE GRUIEC
+ * @author Mathieu Bourges
+ * @author Laure Andro
  *
  */
 @Remote

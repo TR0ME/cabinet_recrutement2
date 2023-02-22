@@ -70,7 +70,7 @@ public class ServicesLocator {
                     "-SNAPSHOT/ServiceOffreEmploi!eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi";
         else if (nomEJB.equals("ServiceSecteurActivite"))
             nomJNDI = "java:global/cabinet_recrutement-ear/eu.telecom_bretagne.cabinet_recrutement-cabinet_recrutement-web-1.0" +
-                    "-SNAPSHOT/ServiceSecteurActivite!eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurActivite";
+                    "-SNAPSHOT/ServiceSecteur!eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur";
             //nomJNDI = "java:global/cabinet_recrutement-ear/eu.telecom_bretagne.cabinet_recrutement-cabinet_recrutement-web-1.0" +
             //      "-SNAPSHOT/ServiceNomService!eu.telecom_bretagne.cabinet_recrutement.service.IServiceNomService";
 
