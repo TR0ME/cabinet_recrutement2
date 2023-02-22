@@ -29,4 +29,6 @@ public interface IServiceEntreprise
    */
   public List<Entreprise> listeDesEntreprises();
   //-----------------------------------------------------------------------------
+
+  public Entreprise nouvelleEntreprise(String nom,String descriptif,String adressePostale);
 }
