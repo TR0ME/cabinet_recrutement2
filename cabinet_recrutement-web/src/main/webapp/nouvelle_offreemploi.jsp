@@ -9,8 +9,13 @@
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
-                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreemploi,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi"%>
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi"%>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidat" %>
+<%@ page import="java.util.List" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteurActiviteDAO" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.*" %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -18,6 +23,13 @@
             <div class="panel-heading"><h3><i class="fa fa-th"></i> R�f�rencer une nouvelle offre emploi</h3></div> <!-- /.panel-heading -->
             <div class="panel-body">
                 <%
+                    IServiceCandidat serviceCandidat = (IServiceCandidat) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidat");
+                    List<Candidat> candidatures = serviceCandidat.listeCandidat();
+
+                    List<NiveauQualification> niveauqualif = serviceCandidat.listeNiveauQualification();
+                    List<SecteurActivite> secteurActs = serviceCandidat.listeSecteurs();
+                    IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteurActivite");
+
                     String nom = request.getParameter("nom");
                     if(nom == null) // Pas de param�tre "nom" => affichage du formulaire
                     {
@@ -37,6 +49,55 @@
                         </div>
                         <div class="form-group">
                             <input class="form-control" placeholder="Secteur d'activite" name="secteur_activite" />
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Niveau de qualification</label>
+                                <small>
+                                    <% for(NiveauQualification nq : niveauqualif){%>
+
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> /><%=nq.getIntituleQualification() %>
+                                        </label>
+                                    </div>
+                                    <%} %>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                <label>Secteur(s) d'activité</label>
+                                <small>
+                                    <table border="0" width="100%">
+                                        <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
+                                        <%
+                                            int i=0;
+                                            for(SecteurActivite s : secteurActs) {
+                                                i++;
+                                                if(i%2 == 0) {%>
+
+                                        <td>
+                                            <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
+                                        </td>
+                                        </tr>
+                                        <%} else{%>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
+                                            </td>
+
+                                            <%} %>
+                                            <%}
+                                                if(i%2==1) { %>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+
+                                    </table>
+                                </small>
+                            </div>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-success btn-circle btn-lg" name="submit-insertion"><i class="fa fa-check"></i></button>
@@ -69,9 +130,15 @@
                     String descriptif     = request.getParameter("descriptif");
                     String profile_recherche = request.getParameter("profile_recherche");
                     String secteur_activite = request.getParameter("secteur_activite");
+                    String profilRecherche = request.getParameter("description_profile_recherche");
+                    serviceCandidat.findNQByID(Integer.parseInt(request.getParameter("niveau"));
 
-                    IServiceOffreemploi serviceOffreemploi = (IServiceOffreemploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreemploi");
-                    Offreemploi offreemploi = serviceOffreemploi.nouvelleOffreemploi(nom,descriptif,profilRecherche,secteurActivite);
+                    List<SecteurActivite> secteurActivite = (List<SecteurActivite>) serviceSecteur.getSecteurActivite(Integer.parseInt(request.getParameter("secteur")));
+
+                    IServiceOffreEmploi serviceOffreemploi = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreemploi");
+                    Entreprise entreprise = (Entreprise) session.getAttribute("utilisateur");
+                    OffreEmploi offreemploi = serviceOffreemploi.nouvelleOffreEmploi(nom,descriptif,profilRecherche,secteurActivite, nq, entreprise);
+                    //nouvelleOffreEmploi(String titre,String descriptif,String profilRecherche,List<SecteurActivite> secteurActivite, NiveauQualification niveauQualification, Entreprise entreprise);
                 %>
                 <div class="col-lg-offset-2 col-lg-8
                           col-xs-12">

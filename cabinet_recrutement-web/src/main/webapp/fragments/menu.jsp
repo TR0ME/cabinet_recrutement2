@@ -29,6 +29,7 @@
           <li><a href="template.jsp?action=liste_candidatures">Liste des candidatures</a></li>
         </ul> <!-- /.nav-second-level -->
       </li>
+      <li><a href="connexion.jsp">Connexion</a> </li>
 
       <!--
         MENU SECONDAIRE

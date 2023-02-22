@@ -84,4 +84,7 @@ public interface IServiceOffreEmploi extends IServicesGlobal
     public void majSecteursActivites(String[] secteurs, int idOffre);
 
 
+    public OffreEmploi nouvelleOffreEmploi(String titre,String descriptif,String profilRecherche,List<SecteurActivite> secteurActivite, NiveauQualification niveauQualification, Entreprise entreprise);
+
+
 }

@@ -120,5 +120,27 @@ public class ServiceOffreEmploi extends ServicesGlobal implements IServiceOffreE
     }
 
     //-----------------------------------------------------------------------------
+    public OffreEmploi nouvelleOffreEmploi(String titre,String descriptif,String profilRecherche,List<SecteurActivite> secteurActivite, NiveauQualification niveauQualification, Entreprise entreprise){
+        OffreEmploi offreEmploi = new OffreEmploi(titre, descriptif, profilRecherche, secteurActivite, niveauQualification, entreprise);
+        return offreEmploiDAO.persist(offreEmploi);
+    }
+
+    /*public void majSecteursActivites(String[] sects, int idC) {
+        SecteurActivite s;
+        OffreEmploi offreEmploi;
+        offreEmploi = offreEmploiDAO.findById(idC);
+        //System.out.println("-------------> idC = "+idC);
+        for (String sect : sects) {
+            try {
+                s = secteurActiviteDAO.findById(Integer.parseInt(sect));
+                s.getOffreEmplois().add(offreEmploi);
+                secteurActiviteDAO.update(s);
+                offreEmploi.getSecteurActivites().add(s);
+                offreEmploiDAO.update(offreEmploi);
+            } catch (Exception e) {
+                System.out.println("---------------> majDuSecteurDansOffreEmploiErreur");
+            }
+        }
+    }*/
 
 }

@@ -111,8 +111,6 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
             } catch (Exception e) {
                 System.out.println("---------------> majDuSecteurDansCandErreur");
             }
-
-
         }
     }
 

@@ -4,6 +4,7 @@ package eu.telecom_bretagne.cabinet_recrutement.data.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -63,14 +64,24 @@ public class OffreEmploi implements java.io.Serializable {
         //this.secteurActivites = secteurActivites;
     }
 
-    public OffreEmploi(String titre, String descriptif, String profilRecherche, Set<SecteurActivite> secteurActivites, NiveauQualification niveauQualification, Entreprise entreprise){
+    public OffreEmploi(String titre, String descriptif, String profilRecherche, List<SecteurActivite> secteurActivites, NiveauQualification niveauQualification, Entreprise entreprise){
         this.titre = titre;
         this.descriptif = descriptif;
         this.profilRecherche = profilRecherche;
-        this.secteurActivites = secteurActivites;
+        Set<SecteurActivite> sects = new HashSet<>(secteurActivites);
+        this.secteurActivites = sects;
         this.niveauQualification = niveauQualification;
         this.entreprise = entreprise;
     }
+
+    public OffreEmploi(Date dateDepot, String mission, String profilRecherche, String titre, Entreprise entrepirse, NiveauQualification nq){
+        this.dateDepot = dateDepot;
+        this.descriptif = mission;
+        this.profilRecherche = profilRecherche;
+        this.entreprise = entrepirse;
+        this.niveauQualification = nq;
+    }
+
 
 
     @Id

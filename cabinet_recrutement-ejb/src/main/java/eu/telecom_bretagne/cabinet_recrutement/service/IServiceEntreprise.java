@@ -31,4 +31,6 @@ public interface IServiceEntreprise
   //-----------------------------------------------------------------------------
 
   public Entreprise nouvelleEntreprise(String nom,String descriptif,String adressePostale);
+
+  public Entreprise execUpdate(Entreprise entreprise);
 }

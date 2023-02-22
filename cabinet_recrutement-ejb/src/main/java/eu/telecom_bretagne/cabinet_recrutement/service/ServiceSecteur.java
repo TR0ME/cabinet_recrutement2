@@ -2,6 +2,8 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.util.List;
 
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidat;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 import jakarta.ejb.EJB;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
@@ -51,4 +53,6 @@ public class ServiceSecteur implements IServiceSecteur {
         return secteurActiviteDAO.persist(SA);
     }
     //-----------------------------------------------------------------------------
+
+
 }
