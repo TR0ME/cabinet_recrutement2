@@ -71,97 +71,112 @@
         }
     }
 %>
-<!-- base code demo -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3>
-                    <i class="glyphicon glyphicon-transfer"></i> Référencer une
-                    nouvelle offre d'emploi
-                </h3>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
 
-                <div
-                        class="col-lg-offset-2 col-lg-8
+<body>
+<jsp:include page="fragments/head.html"/>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar
+                  navbar-default
+                  navbar-static-top"
+         role="navigation"
+         style="margin-bottom: 0">
+        <jsp:include page="fragments/bandeau.jsp"/>
+        <jsp:include page="fragments/menu.jsp"/>
+    </nav>
+    <!-- base code demo -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        <i class="glyphicon glyphicon-transfer"></i> Référencer une
+                        nouvelle offre d'emploi
+                    </h3>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                    <div
+                            class="col-lg-offset-2 col-lg-8
                         col-xs-12">
-                    <form role="form" action="template.jsp" method="get">
-                        <input type="hidden" name="action" value="nouvelle_offre"/>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Titre de l'offre"
-                                   name="titre"/>
-                        </div>
-                        <div class="form-group">
+                        <form role="form" action="template.jsp" method="get">
+                            <input type="hidden" name="action" value="nouvelle_offre"/>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Titre de l'offre"
+                                       name="titre"/>
+                            </div>
+                            <div class="form-group">
 							<textarea class="form-control"
                                       placeholder="Descriptif de la mission" rows="5"
                                       name="descriptif_mission"></textarea>
-                        </div>
-                        <div class="form-group">
+                            </div>
+                            <div class="form-group">
 							<textarea class="form-control" placeholder="Profil recherché"
                                       rows="5" name="profil_recherche"></textarea>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label>Niveau de qualification</label>
-                                <small><% for (NiveauQualification nq : niveauqualif) {%>
-
-                                    <div class="radio">
-                                        <label> <input type="radio" name="niveau"
-                                                       value=<%=nq.getIdQualification() %>/><%=nq.getIntituleQualification() %>
-                                        </label>
-                                    </div>
-                                    <%} %>
-                                </small>
                             </div>
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="form-group">
-                                <label>Secteur(s) d'activité</label> <small>
-                                <table border="0" width="100%">
-                                    <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
-                                    <%
-                                        int i = 0;
-                                        for (SecteurActivite s : secteurActs) {
-                                            i++;
-                                            if (i % 2 == 0) {%>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Niveau de qualification</label>
+                                    <small><% for (NiveauQualification nq : niveauqualif) {%>
 
-                                    <td><input type="checkbox" name="secteur"
-                                               value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
-                                    </td>
-                                    </tr>
-                                    <%} else {%>
-                                    <tr>
+                                        <div class="radio">
+                                            <label> <input type="radio" name="niveau"
+                                                           value=<%=nq.getIdQualification() %>/><%=nq.getIntituleQualification() %>
+                                            </label>
+                                        </div>
+                                        <%} %>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group">
+                                    <label>Secteur(s) d'activité</label> <small>
+                                    <table border="0" width="100%">
+                                        <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
+                                        <%
+                                            int i = 0;
+                                            for (SecteurActivite s : secteurActs) {
+                                                i++;
+                                                if (i % 2 == 0) {%>
+
                                         <td><input type="checkbox" name="secteur"
                                                    value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
                                         </td>
+                                        </tr>
+                                        <%} else {%>
+                                        <tr>
+                                            <td><input type="checkbox" name="secteur"
+                                                       value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
+                                            </td>
 
-                                            <%} %>
-                                            <%}
+                                                <%} %>
+                                                <%}
                       		if(i%2==1) System.out.println("</tr>");%>
 
-                                </table>
-                            </small>
+                                    </table>
+                                </small>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-success btn-circle btn-lg"
-                                    name="submit-insertion">
-                                <i class="fa fa-check"></i>
-                            </button>
-                            <button type="reset" class="btn btn-warning btn-circle btn-lg">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-circle btn-lg"
+                                        name="submit-insertion">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                <button type="reset" class="btn btn-warning btn-circle btn-lg">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
 
+                </div>
+                <!-- /.panel-body -->
             </div>
-            <!-- /.panel-body -->
+            <!-- /.panel -->
         </div>
-        <!-- /.panel -->
+        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.row -->
 </div>
-<!-- /.row -->
+</body>

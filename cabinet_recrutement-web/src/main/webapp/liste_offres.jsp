@@ -46,12 +46,12 @@
                             {
                         %>
                         <tr>
-                            <td>OE_<%=offreEmploi.getIdOffreEmploi()%></td>
-                            <td><%=offreEmploi.getNom()%></td>
+                            <td>OE_<%=offreEmploi.getIdOffre()%></td>
+                            <td><%=offreEmploi.getTitre()%></td>
                             <td><%=offreEmploi.getDescriptif()%></td>
                             <td><%=offreEmploi.getProfilRecherche()%></td>
-                            <td><%=offreEmploi.getSecteurActivite()%></td>
-                            <td align="center"><a href="template.jsp?action=infos_offreEmploi&id=<%=offreEmploi.getIdOffreEmploi()%>"><i class="fa fa-eye fa-lg"></i></a></td>
+                            <td><%=offreEmploi.getSecteurActivites()%></td>
+                            <td align="center"><a href="template.jsp?action=infos_offreEmploi&id=<%=offreEmploi.getIdOffre()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                         </tr>
                         <%
                             }
