@@ -41,14 +41,26 @@
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
 
             <%
-            } else {
+            } else if (session.getAttribute("candidat") != null) {
+            %>
+            <li><h4>Candidat bien connecté</h4></li>
+            <li><a href="deconnexion.jsp">Se déconnecter</a></li>
+            <%
+            } else if (session.getAttribute("admin")!= null){
+
+            %>
+            <li><h4>Admin bien connecté</h4></li>
+            <li><a href="ajouternq.jsp">Ajouter des niveau de qualif</a> </li>
+            <li><a href="ajoutersa.jsp">Ajouter un secteur d'activité</a> </li>
+            <li><a href="deconnexion.jsp">Se déconnecter</a></li>
+            <%
+                }else{
+
             %>
             <li><a href="connexion.jsp">Connexion</a></li>
             <%
                 }
-
             %>
-
             <!--
               MENU SECONDAIRE
             -->

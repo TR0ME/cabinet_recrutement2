@@ -5,10 +5,13 @@
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidat" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.Candidat" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceQualification" %>
+<%@ page import="java.util.List" %>
 
 <%
     String erreur = null;
-    String identifiant = request.getParameter("identifiant");
+    String niv_qualif_form = request.getParameter("niv_qualif_form");
 %>
 
 <!DOCTYPE html>
@@ -31,65 +34,61 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3><i class="fa fa-sign-in"></i> Connexion</h3>
+                        <h3><i class="fa fa-sign-in"></i> Ajouter un niveau de qualification</h3>
                     </div> <!-- /.panel-heading -->
                     <div class="panel-body">
                         <%
-                            if (identifiant == null) // Pas de paramètre "identifiant" => affichage du formulaire
+                            if (niv_qualif_form == null && session.getAttribute("admin") != null) // Pas de paramètre "niv_qualif_form" => affichage du formulaire
                             {
                         %>
                         <div class="row col-xs-offset-2 col-xs-8">
                             <!-- Formulaire -->
-                            <form role="form" action="connexion.jsp" method="get">
+                            <form role="form" action="ajouternq.jsp" method="get">
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Identifiant" name="identifiant"
+                                        <input class="form-control" placeholder="niveau de sualification"
+                                               name="niv_qualif_form"
                                                type="text" autofocus>
                                     </div>
-                                    <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                                    <button type="submit" class="btn btn-lg btn-success btn-block">Ajouter le niveau de
+                                        qualification
+                                    </button>
                                 </fieldset>
                             </form>
                             <p/>
-                            <!-- Message -->
-                            <div class="alert alert-info col-xs-offset-3 col-xs-6">
-                                L'identifiant est la clé primaire préfixée de :
-                                <ul>
-                                    <li>pour une entreprise : <code>ENT_</code> <em>(ENT_12 par exemple)</em></li>
-                                    <li>pour une candidature : <code>CAND_</code> <em>(CAND_7 par exemple)</em></li>
-                                </ul>
-                                <br/>
-                                <em>Note : l'identification se fait sans mot de passe.</em>
-                            </div>
+
                         </div>
                         <%
-                        } else // Paramètre "identifiant" existant => connexion
+                        } else // Paramètre "niv_qualif_form" existant => connexion
                         {
-                            if (identifiant.toLowerCase().startsWith("ent_")) {
-                                IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
-                                int id = Integer.parseInt(identifiant.substring(4)); // On enlève le préfixe "ENT_";
-                                Entreprise entreprise = serviceEntreprise.getEntreprise(id);
-                                if (entreprise != null) {
-                                    session.setAttribute("utilisateur", entreprise);
-                                } else {
-                                    erreur = "Erreur : il n'y a pas d'entreprise avec cet identifiant : " + identifiant.toUpperCase();
-                                }
-                            } else if (identifiant.toLowerCase().startsWith("cand_")) {
-                                IServiceCandidat serviceCandidat = (IServiceCandidat) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidat");
-                                int id = Integer.parseInt(identifiant.substring(5));
-                                Candidat candidat = serviceCandidat.getCandidat(id);
-                                if (candidat != null) {
-                                    session.setAttribute("candidat", candidat);
-                                } else {
-                                    erreur = "Erreur : Il n'y a pas de candidats avec cet identifiant : " + identifiant.toLowerCase();
-                                }
-                            }else if (identifiant.toLowerCase().startsWith("adm")){
-                                session.setAttribute("admin",1);
+
+                            IServiceQualification serviceQualification = null;
+                            try {
+                                serviceQualification = (IServiceQualification) ServicesLocator.getInstance().getRemoteInterface("ServiceQualification");
+                            } catch (Exception e) {
+                        %>
+                        <p><%
+                            e.printStackTrace();
+                        %></p>
+                        <%
                             }
+
+                            List<NiveauQualification> listNQ = serviceQualification.findAll();
+
+                            for (NiveauQualification niv : listNQ) {
+                                if (niv.getIntituleQualification().toLowerCase() == niv_qualif_form) {
+                                    erreur = "ERREUR : Le niveau de qualification exite déja !";
+                                }
+                            }
+                            if (erreur == null) {
+                                serviceQualification.addNiveauQualification(niv_qualif_form);
+                            }
+
                             // TODO : code spécifique pour la connexion d'un candidat -->
-                            else if (identifiant.equals("")) {
-                                erreur = "Veuillez renseignez un identifiant pour pouvoir vous connecter";
+                            else if (niv_qualif_form.equals("")) {
+                                erreur = "Veuillez renseignez un niv_qualif_form pour pouvoir l'ajouter";
                             } else {
-                                erreur = "Identifiant non reconnu : il n'est pas de la forme CAND_XXX ou ENT_XXX";
+                                erreur = "Niv qualif non reconnu";
                             }
                             if (erreur == null) {
                                 response.sendRedirect("template.jsp");
@@ -98,14 +97,14 @@
                         <div class="row col-xs-offset-1 col-xs-10">
                             <div class="panel panel-red">
                                 <div class="panel-heading ">
-                                    Impossible de se connecter
+                                    Impossible d'ajouter un niveau de qualification'
                                 </div>
                                 <div class="panel-body text-center">
                                     <p class="text-danger"><strong><%=erreur%>
                                     </strong></p>
                                     <button type="button"
                                             class="btn btn-danger"
-                                            onclick="window.location.href='connexion.jsp'">
+                                            onclick="window.location.href='ajouternq.jsp'">
                                         Retour...
                                     </button>
                                 </div>

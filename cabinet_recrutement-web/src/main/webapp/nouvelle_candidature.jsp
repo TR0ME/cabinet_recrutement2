@@ -22,7 +22,7 @@
     List<Candidat> candidatures = serviceCandidat.listeCandidat();
     List<NiveauQualification> niveauqualif = serviceCandidat.listeNiveauQualification();
     List<SecteurActivite> secteurActs = serviceCandidat.listeSecteurs();
-    IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteurActivite");
+    IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteur");
 %>
 <!-- base code demo -->
 <div class="row">

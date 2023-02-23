@@ -35,6 +35,15 @@ public class NiveauQualificationDAO {
         }
         return transientInstance;
     }
+    public NiveauQualification persist(String name){
+        NiveauQualification nq = new NiveauQualification(name);
+        try{
+            entityManager.persist(nq);
+        }catch (RuntimeException e){
+            throw e;
+        }
+        return nq;
+    }
     
     public void remove(NiveauQualification persistentInstance) {
         logger.log(Level.INFO, "removing NiveauQualification instance");

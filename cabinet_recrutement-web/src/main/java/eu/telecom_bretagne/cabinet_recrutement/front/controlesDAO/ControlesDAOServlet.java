@@ -858,7 +858,7 @@ public class ControlesDAOServlet extends HttpServlet {
 
         out.println("-----------------------------------------------------------------------------");
         out.println("Clean des insersions dans la BDD");
-        try{
+        /*try{
             cleanMessageOffreemploi(messageOffreemploiLinkedList,messageoffreemploiDAO, out);
             cleanMessageCandidat(messageCandidatLinkedList, out, messagecandidatDAO);
             cleanOffreEmploi(offreEmploiLinkedList, out, offreemploiDAO);
@@ -868,7 +868,7 @@ public class ControlesDAOServlet extends HttpServlet {
             cleanEntreprise(entrepriseLinkedList, out, entrepriseDAO);
         }catch (Exception e){
             out.println("[ERROR] lors de la suppression de la bdd de référence");
-        }
+        }*/
 
 
         //Fin du void service
@@ -903,7 +903,7 @@ public class ControlesDAOServlet extends HttpServlet {
         LinkedList<Entreprise> entrepriseList = new LinkedList<Entreprise>();
         Entreprise entreprise;
         try {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 5; i++) {
                 entreprise = new Entreprise("Adresse" + i, "Descriptif" + i, "Nom" + i);
                 entreprise = entrepriseDAO.persist(entreprise);
                 entrepriseList.add(entreprise);
@@ -945,7 +945,7 @@ public class ControlesDAOServlet extends HttpServlet {
 
         //Début "vraie" méthode start OffreEmploi
         try {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 5; i++) {
                 //(String titre, String descriptif, String profilRecherche, NiveauQualification niveauQualification, Date dateDepot, Entreprise entreprise, Set<SecteurActivite> secteurActivites)
                 offreEmploi = new OffreEmploi("Titre" + i, "Descriptif" + i, "profil_recherche" + i, niveauQualification, dateDepot, entreprise);
                 offreEmploi = offreEmploiDAO.persist(offreEmploi);
@@ -978,7 +978,7 @@ public class ControlesDAOServlet extends HttpServlet {
         LinkedList<SecteurActivite> secteurActiviteList = new LinkedList<SecteurActivite>();
         SecteurActivite secteurActivite;
         try {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 5; i++) {
                 //(int idSecteur, String intituleActivite, Set<Candidat> candidats, Set<OffreEmploi> offreEmplois)
                 secteurActivite = new SecteurActivite("IntituleActivite" + i);
                 secteurActivite = secteurActiviteDAO.persist(secteurActivite);
@@ -1011,7 +1011,7 @@ public class ControlesDAOServlet extends HttpServlet {
         NiveauQualification niveauQualification;
         LinkedList<NiveauQualification> niveauQualificationList = new LinkedList<NiveauQualification>();
         try {
-            for (int i = 1; i < 10; i++) {
+            for (int i = 1; i < 5; i++) {
                 niveauQualification = new NiveauQualification("Intitule" + i);
                 niveauQualification = niveauQualificationDAO.persist(niveauQualification);
                 niveauQualificationList.add(niveauQualification);
@@ -1055,7 +1055,7 @@ public class ControlesDAOServlet extends HttpServlet {
         }
 
         try {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 5; i++) {
                 //variables du constructeur :
                 //(String nom, String prenom, String mail, String adressePostale, String cv, Date datedepot,
                 // Date datenaissance, NiveauQualification byId, Set<SecteurActivite> liste_secteurs)
@@ -1100,7 +1100,7 @@ public class ControlesDAOServlet extends HttpServlet {
         }
 
         try {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 5; i++) {
 
                 //affichage constructeur :
                 //(int idMessageCandidat, Candidat candidat, OffreEmploi offreEmploi, Date dateEnvoi, String corpsMessage
@@ -1143,7 +1143,7 @@ public class ControlesDAOServlet extends HttpServlet {
         }
 
         try {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 5; i++) {
 
                 //affichage constructeur :
                 //(Candidat byId, OffreEmploi byId1, String corpsMessage, Date dateenvoi)

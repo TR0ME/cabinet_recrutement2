@@ -62,13 +62,13 @@ public class ServicesLocator {
         else if (nomEJB.equals("ServiceMessageOffreemploi"))
             nomJNDI = "java:global/cabinet_recrutement-ear/eu.telecom_bretagne.cabinet_recrutement-cabinet_recrutement-web-1.0" +
                     "-SNAPSHOT/ServiceMessageOffreemploi!eu.telecom_bretagne.cabinet_recrutement.service.IServiceMessageOffreemploi";
-        else if (nomEJB.equals("ServiceNiveauQualification"))
+        else if (nomEJB.equals("ServiceQualification"))
             nomJNDI = "java:global/cabinet_recrutement-ear/eu.telecom_bretagne.cabinet_recrutement-cabinet_recrutement-web-1.0" +
-                    "-SNAPSHOT/ServiceNiveauQualification!eu.telecom_bretagne.cabinet_recrutement.service.IServiceNiveauQualification";
+                    "-SNAPSHOT/ServiceQualification!eu.telecom_bretagne.cabinet_recrutement.service.IServiceQualification";
         else if (nomEJB.equals("ServiceOffreEmploi"))
             nomJNDI = "java:global/cabinet_recrutement-ear/eu.telecom_bretagne.cabinet_recrutement-cabinet_recrutement-web-1.0" +
                     "-SNAPSHOT/ServiceOffreEmploi!eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi";
-        else if (nomEJB.equals("ServiceSecteurActivite"))
+        else if (nomEJB.equals("ServiceSecteur"))
             nomJNDI = "java:global/cabinet_recrutement-ear/eu.telecom_bretagne.cabinet_recrutement-cabinet_recrutement-web-1.0" +
                     "-SNAPSHOT/ServiceSecteur!eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur";
             //nomJNDI = "java:global/cabinet_recrutement-ear/eu.telecom_bretagne.cabinet_recrutement-cabinet_recrutement-web-1.0" +
@@ -95,7 +95,7 @@ public class ServicesLocator {
 //      nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/EntrepriseDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO";
 
         else
-            throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom...");
+            throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom..." + nomEJB);
 
         // La méthode recherche d'abord le stub dans le cache, s'il est absent,
         // il est récupéré via JNDI.
