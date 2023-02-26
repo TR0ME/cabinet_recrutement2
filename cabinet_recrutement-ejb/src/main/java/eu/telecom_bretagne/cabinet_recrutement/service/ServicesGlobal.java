@@ -20,8 +20,8 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Session Bean implementation class ServicesGeneriques
- * @author Elouan LE DUC
- * @author Clement LE GRUIEC
+ * @author Mathieu Bourges
+ * @author Laure Andro
  *
  */
 @Stateless
@@ -47,7 +47,7 @@ public class ServicesGlobal implements IServicesGlobal
             java.util.Date dateConverti = new SimpleDateFormat("dd/MM/yyyy").parse(date);
             dateConvertiSQL = new Date(dateConverti.getTime());
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
+            System.out.println("[ERROR]Convertion date Service Global");
             e.printStackTrace();
         }
         return dateConvertiSQL;

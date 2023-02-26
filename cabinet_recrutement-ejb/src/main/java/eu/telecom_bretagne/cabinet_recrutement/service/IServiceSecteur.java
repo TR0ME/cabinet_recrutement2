@@ -16,7 +16,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 public interface IServiceSecteur {
     // -----------------------------------------------------------------------------
     /**
-     * Obtention d'une <{@link SecteurActivite}.
+     * Obtention d'un Secteur d'acivité
      *
      * @param id id de SecteurActivite à récupérer.
      * @return
@@ -24,7 +24,7 @@ public interface IServiceSecteur {
     public SecteurActivite getSecteurActivite(int id);
 
     /**
-     * Obtention de la liste de toutes les SecteurActivite.
+     * Obtention de la liste lite des SA
      *
      * @return la liste des SecteurActivite dans une {@code List<SecteurActivite>}.
      */
@@ -36,6 +36,6 @@ public interface IServiceSecteur {
      *
      * @return l'objet SecteurActivite créé
      */
-    public SecteurActivite execPersist(SecteurActivite SA);
+    public SecteurActivite addSA(SecteurActivite SA);
 //-----------------------------------------------------------------------------
 }

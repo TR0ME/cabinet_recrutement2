@@ -1,6 +1,5 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -45,7 +44,7 @@ public interface IServiceOffreEmploi extends IServicesGlobal
     /**
      * Transforme une liste de secteur en string
      *
-     * @param OffreEmploi.
+     * @param offres
      *
      * @return String[] liste des secteurs d'activité
      */
@@ -62,15 +61,15 @@ public interface IServiceOffreEmploi extends IServicesGlobal
     /**
      * Permet de persister l'offre emploi
      *
-     * @param offre emploi Objet à persister.
+     * @param offreEmploi emploi Objet à persister.
      *
      * @return OffreEmploi
      */
-    public OffreEmploi execPersist(OffreEmploi offreEmploi);
+    public OffreEmploi addOffre(OffreEmploi offreEmploi);
     /**
      * Permet de maj l'offre emploi
      *
-     * @param offre emploi Objet à maj.
+     * @param offreEmploi emploi Objet à maj.
      *
      * @return OffreEmploi
      */
@@ -78,7 +77,7 @@ public interface IServiceOffreEmploi extends IServicesGlobal
     /**
      * Permet de d'ajouter des secteurs à une OffreEmploi
      *
-     * @param id id de l' OffreEmploi, sects liste des secteur sous forme de string
+     * @param idOffre id de l' OffreEmploi, sects liste des secteur sous forme de string
      *
      */
     public void majSecteursActivites(String[] secteurs, int idOffre);

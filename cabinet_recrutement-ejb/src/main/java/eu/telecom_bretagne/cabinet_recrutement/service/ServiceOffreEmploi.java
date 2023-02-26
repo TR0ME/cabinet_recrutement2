@@ -108,7 +108,7 @@ public class ServiceOffreEmploi extends ServicesGlobal implements IServiceOffreE
         return niveauQualificationDAO.findById(id);
     }
 
-    public OffreEmploi execPersist(OffreEmploi oe) {
+    public OffreEmploi addOffre(OffreEmploi oe) {
         OffreEmploi offre = offreEmploiDAO.persist(oe);
         return offre;
     }

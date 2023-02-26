@@ -48,7 +48,7 @@ public class ServiceSecteur implements IServiceSecteur {
 
     //-----------------------------------------------------------------------------
     @Override
-    public SecteurActivite execPersist(SecteurActivite SA) {
+    public SecteurActivite addSA(SecteurActivite SA) {
 
         return secteurActiviteDAO.persist(SA);
     }

@@ -7,6 +7,11 @@ import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 
 import java.util.List;
+
+/**
+ * @author Mathieu Bourges
+ * @author Laure Andro
+ */
 @Stateless
 @LocalBean
 public class ServiceQualification implements IServiceQualification {

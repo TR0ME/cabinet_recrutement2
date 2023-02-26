@@ -19,8 +19,8 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.*;
 /**
  * Session Bean implementation class ServiceEntreprise
  *
- * @author Elouan LE DUC
- * @author Clement LE GRUIEC
+ * @author Mathieu Bourges
+ * @author Laure Andro
  */
 @Stateless
 @LocalBean
@@ -77,7 +77,7 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
                 //System.out.println(secteurs_recup.getIntitule());
             }
         } catch (Exception e) {
-            System.out.println("---------------- cassé get secteur acti ServiceCandidature");
+            System.out.println("[ERROR°Get SA dans sevice candidat");
         }
 
         return SecteursToString;
@@ -109,7 +109,7 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
                 c.getSecteurActivites().add(s);
                 candidatureDAO.update(c);
             } catch (Exception e) {
-                System.out.println("---------------> majDuSecteurDansCandErreur");
+                System.out.println("[ERROR]MAJ SA dans service canidat");
             }
         }
     }
@@ -129,7 +129,7 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
             c = candidatureDAO.update(c);
 
         } catch (Exception e) {
-            System.out.println("RAZ cassé");
+            System.out.println("[ERROR]RAZ secteur dans service candidat");
             System.out.println(e);
         }
         return c;
@@ -166,28 +166,28 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
                 offreemploiDAO.update(msgC.getOffreEmploi());
                 messagecandidatureDAO.remove(msgC);
             }
-            System.out.println("---------------ok 1 ");
+            //System.out.println("---------------ok 1 ");
             //suppression des messages offresEmplois
             for (MessageOffreemploi msgOF : c.getMessageOffreemplois()) {
                 msgOF.getOffreEmploi().removeMessageOffredemploi(msgOF);
                 messageoffredemploiDAO.remove(msgOF);
             }
-            System.out.println("---------------ok 2 ");
+            //System.out.println("---------------ok 2 ");
             //suppression dans les secteur activite
             c.getNiveauQualification().removeCandidat(c);
-            System.out.println("---------------ok 3 ");
+            //System.out.println("---------------ok 3 ");
             //suppression dans le niveau qualification
             for (SecteurActivite sa : c.getSecteurActivites()) {
                 if (c != null) sa.getCandidats().remove(c);
             }
-            System.out.println("---------------ok 4 ");
+            //System.out.println("---------------ok 4 ");
             //suppression des messages offresEmplois
             candidatureDAO.remove(c);
             System.out.println("---------------ok 5 ");
 
         } catch (Exception e) {
 
-            System.out.println("--------suppression candidature kassé");
+            System.out.println("[ERROR]Suppression d'une candidature");
             System.out.println(e);
         }
 

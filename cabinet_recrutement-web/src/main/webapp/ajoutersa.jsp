@@ -83,7 +83,7 @@
                             }
                             if (erreur == null) {
                                 SecteurActivite sa = new SecteurActivite(sa_form);
-                                serviceSecteur.execPersist(sa);
+                                serviceSecteur.addSA(sa);
                             }
 
                             // TODO : code spécifique pour la connexion d'un candidat -->
