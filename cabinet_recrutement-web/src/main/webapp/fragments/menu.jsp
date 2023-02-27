@@ -37,13 +37,16 @@
                 if (session.getAttribute("utilisateur") != null) {
             %>
             <li><a href="nouvelle_offre.jsp">Ajouter une offre d'emploi</a></li>
-            <li><a href="mon_entreprise.jsp">Mon entrerprise</a></li>
+            <li><a href="mon_entreprise.jsp">Mon entreprise</a></li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
 
             <%
             } else if (session.getAttribute("candidat") != null) {
             %>
             <li><h4>Candidat bien connecté</h4></li>
+            <li><a href="nouvelle_candidature.jsp">Ajouter une candidature</a></li>
+            <li><a href="mon_profil_candidat.jsp">Mon profil candidat</a></li>
+            <li><a href="liste_offres_recommandees.jsp">Consulter les offres recommandées</a></li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
             <%
             } else if (session.getAttribute("admin")!= null){
