@@ -37,6 +37,7 @@
                         <%
                             if (identifiant == null) // Pas de paramètre "identifiant" => affichage du formulaire
                             {
+
                         %>
                         <div class="row col-xs-offset-2 col-xs-8">
                             <!-- Formulaire -->
