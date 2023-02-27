@@ -38,12 +38,14 @@
             %>
             <li><a href="nouvelle_offre.jsp">Ajouter une offre d'emploi</a></li>
             <li><a href="mon_entreprise.jsp">Mon entrerprise</a></li>
+            <li><a href="maj_entreprise.jsp">MAJ info entreprise</a> </li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
 
             <%
             } else if (session.getAttribute("candidat") != null) {
             %>
             <li><h4>Candidat bien connecté</h4></li>
+            <li><a href="maj_candidature.jsp">Mise a jour d'une candidature</a> </li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
             <%
             } else if (session.getAttribute("admin")!= null){

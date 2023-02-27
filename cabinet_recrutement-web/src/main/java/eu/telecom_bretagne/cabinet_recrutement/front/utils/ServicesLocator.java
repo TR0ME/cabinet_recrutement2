@@ -21,6 +21,7 @@ public class ServicesLocator {
             cache = new HashMap<String, Object>();
         } catch (NamingException e) {
             e.printStackTrace();
+            //Il y a une erreur
         }
     }
 

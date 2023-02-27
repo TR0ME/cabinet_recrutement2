@@ -26,6 +26,7 @@ public class ControlesDAOServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     //-----------------------------------------------------------------------------
     private int idTest = 0; //Id qui est utilisé lors des tests
+    //hello
 
     /**
      * @see HttpServlet#HttpServlet()
