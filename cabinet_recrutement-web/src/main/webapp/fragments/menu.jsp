@@ -3,6 +3,7 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.Candidat" %>
 
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
@@ -45,20 +46,22 @@
             %>
             <li><h4>Candidat bien connecté</h4></li>
             <li><a href="nouvelle_candidature.jsp">Ajouter une candidature</a></li>
-            <li><a href="mon_profil_candidat.jsp">Mon profil candidat</a></li>
+            <% Candidat cand = (Candidat) session.getAttribute("candidat"); %>
+            <li><a href="template.jsp?action=infos_candidature&id=<%=cand.getIdCandidat()%>">Mon profil candidat</a>
+            </li>
             <li><a href="liste_offres_recommandees.jsp">Consulter les offres recommandées</a></li>
-            <li><a href="maj_candidature.jsp">Mise a jour d'une candidature</a> </li>
+            <li><a href="maj_candidature.jsp">Mise a jour d'une candidature</a></li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
             <%
-            } else if (session.getAttribute("admin")!= null){
+            } else if (session.getAttribute("admin") != null) {
 
             %>
             <li><h4>Admin bien connecté</h4></li>
-            <li><a href="ajouternq.jsp">Ajouter des niveau de qualif</a> </li>
-            <li><a href="ajoutersa.jsp">Ajouter un secteur d'activité</a> </li>
+            <li><a href="ajouternq.jsp">Ajouter des niveau de qualif</a></li>
+            <li><a href="ajoutersa.jsp">Ajouter un secteur d'activité</a></li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
             <%
-                }else{
+            } else {
 
             %>
             <li><a href="connexion.jsp">Connexion</a></li>
