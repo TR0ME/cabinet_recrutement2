@@ -37,6 +37,7 @@
                 //System.out.println(session.getAttribute("utilisateur"));
                 if (session.getAttribute("utilisateur") != null) {
             %>
+            <li>Fonctionnalitré Candidat</li>
             <li><a href="nouvelle_offre.jsp">Ajouter une offre d'emploi</a></li>
             <li><a href="mon_entreprise.jsp">Mon entreprise</a></li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
@@ -44,7 +45,7 @@
             <%
             } else if (session.getAttribute("candidat") != null) {
             %>
-            <li><h4>Candidat bien connecté</h4></li>
+            <li><h4>Fonctionnalité Candidat</h4></li>
             <li><a href="nouvelle_candidature.jsp">Ajouter une candidature</a></li>
             <% Candidat cand = (Candidat) session.getAttribute("candidat"); %>
             <li><a href="template.jsp?action=infos_candidature&id=<%=cand.getIdCandidat()%>">Mon profil candidat</a>
@@ -56,7 +57,7 @@
             } else if (session.getAttribute("admin") != null) {
 
             %>
-            <li><h4>Admin bien connecté</h4></li>
+            <li><h4>Fonctionnalité Admin</h4></li>
             <li><a href="ajouternq.jsp">Ajouter des niveau de qualif</a></li>
             <li><a href="ajoutersa.jsp">Ajouter un secteur d'activité</a></li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
