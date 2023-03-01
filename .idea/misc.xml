@@ -16,4 +16,7 @@
     <option name="wasEnabledAtLeastOnce" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-19" project-jdk-type="JavaSDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
 </project>
