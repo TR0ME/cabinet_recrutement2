@@ -7,15 +7,20 @@
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-ejb/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/erreur.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/fragments/menu.jsp" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/infos_offreEmploi.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/liste_candidatures.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/liste_offres.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/liste_offres_par_secteur.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/liste_offres_recommandees.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/maj_candidature.jsp" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/maj_entreprise.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/nouvelle_candidature.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/nouvelle_entreprise.jsp" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/nouvelle_offre.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/nouvelle_offreemploi.jsp" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/cabinet_recrutement-web/src/main/webapp/template.jsp" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

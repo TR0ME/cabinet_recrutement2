@@ -125,6 +125,19 @@ public class ServiceOffreEmploi extends ServicesGlobal implements IServiceOffreE
         return offreEmploiDAO.persist(offreEmploi);
     }
 
+    //------------------------------------------------------------------------------
+
+    public List<OffreEmploi> getOffresRecommandees(Set<SecteurActivite> setSecteurActiviteCandidat, int idNiveauQualification) {
+
+        List<OffreEmploi> listeOffresRecomandees = null;
+        for (SecteurActivite sa : setSecteurActiviteCandidat) {
+            listeOffresRecomandees = offreEmploiDAO.findBySecteurActiviteAndNiveauQualification(sa.getIdSecteur(), idNiveauQualification);
+        }
+
+        return listeOffresRecomandees;
+    }
+
+
     /*public void majSecteursActivites(String[] sects, int idC) {
         SecteurActivite s;
         OffreEmploi offreEmploi;

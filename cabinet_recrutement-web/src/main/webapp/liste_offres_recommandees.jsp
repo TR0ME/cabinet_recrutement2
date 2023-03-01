@@ -8,8 +8,7 @@
 
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1" %>
 
-<%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
-                java.util.List" %>
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,java.util.List" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.Candidat" %>
@@ -24,6 +23,11 @@
     Candidat cand = (Candidat) session.getAttribute("candidat");
     Set<SecteurActivite> lstSA = cand.getSecteurActivites();
     List<SecteurActivite> sectAff = new ArrayList<SecteurActivite>();
+
+    int idNiveauQualificationCandidat = cand.getNiveauQualification().getIdQualification();
+    Set<SecteurActivite> setSecteurActiviteCandidat = cand.getSecteurActivites();
+
+    Set<OffreEmploi> listeOffreEmploiRecommandees = offreEmploi.getOffresRecommandees(setSecteurActiviteCandidat,idNiveauQualificationCandidat);
 %>
 
 <div class="row">
@@ -39,43 +43,25 @@
                         -->
                         <thead>
                         <tr>
-                            <th>Identifiant</th>
-                            <th>Nom</th>
-                            <th>Descriptif</th>
-                            <th>Profile recherche</th>
-                            <th>Secteur Activite</th>
+
+                        <%for(OffreEmploi offreEmploi : listeOffreEmploiRecommandees){ %>
+                                <tr>
+                                   <td>OE_<%=offreEmploi.getIdOffre()%></td>
+                                   <td><%=offreEmploi.getTitre()%></td>
+                                   <td><%=offreEmploi.getDescriptif()%></td>
+                                   <td><%=offreEmploi.getProfilRecherche()%></td>
+                                   <td><%=offreEmploi.getSecteurActivites()%></td>
+                                   <td align="center"><a
+                                                                    href="template.jsp?action=infos_offreEmploi&id=<%=offreEmploi.getIdOffre()%>"><i
+                                                                    class="fa fa-eye fa-lg"></i></a></td>
+                                </tr>
+                            <% } %>
                         </tr>
                         </thead>
                         <!--
                           Contenu du tableau
                         -->
                         <tbody>
-                        <%
-                            for (OffreEmploi offreEmploi : offresEmplois) {
-                                if (cand.getNiveauQualification().equals(offreEmploi.getNiveauQualification())) {
-
-
-                        %>
-                        <tr>
-                            <td>OE_<%=offreEmploi.getIdOffre()%>
-                            </td>
-                            <td><%=offreEmploi.getTitre()%>
-                            </td>
-                            <td><%=offreEmploi.getDescriptif()%>
-                            </td>
-                            <td><%=offreEmploi.getProfilRecherche()%>
-                            </td>
-                            <td><%=offreEmploi.getSecteurActivites()%>
-                            </td>
-                            <td align="center"><a
-                                    href="template.jsp?action=infos_offreEmploi&id=<%=offreEmploi.getIdOffre()%>"><i
-                                    class="fa fa-eye fa-lg"></i></a></td>
-                        </tr>
-                        <%
-                                }
-                            }
-
-                        %>
                         </tbody>
                     </table>
                 </div> <!-- /.table-responsive -->
