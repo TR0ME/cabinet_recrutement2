@@ -4,6 +4,11 @@
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.Candidat" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidat" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceQualification" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite" %>
+<%@ page import="java.util.List" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -39,10 +44,11 @@
     <div id="page-wrapper">
         <h4>Mise à jour des informations d'une candidature</h4>
         <% Candidat candidat = (Candidat) session.getAttribute("candidat");
-
-          IServiceQualification serviceQualification = (IServiceQualificiation) ServicesLocator.getInstance().getRemoteInterface("ServiceQualification");
-          IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteur");
-          <!-- Object candidat = session.getAttribute("candidat"); -->
+            IServiceQualification serviceQualification = (IServiceQualification) ServicesLocator.getInstance().getRemoteInterface("ServiceQualification");
+            IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteur");
+            //Candidat candidat = session.getAttribute("candidat");
+            List<NiveauQualification> niveauqualif = serviceQualification.findAll();
+            List<SecteurActivite> secteurActs = serviceSecteur.listeDesSecteurs();
 
         %>
         <% if (request.getParameter("submit") != null) {
@@ -78,7 +84,7 @@
         <div class="col-lg-offset-2 col-lg-8
                         col-xs-12">
             <form role="form" action="maj_candidature.jsp" method="get">
-            <!-- --------------start modif---------------------------------------------------------- -->
+                <!-- --------------start modif---------------------------------------------------------- -->
                 <input type="hidden" name="ID" value=" <%=candidat.getIdCandidat()%>"/>
                 <div class="form-group">
                     <label>ID : <%=candidat.getIdCandidat()%>
@@ -113,107 +119,90 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label>Niveau de qualification</label>
-                           <small>
-                              <% for(NiveauQualification nq : niveauqualif){
-                                 if(candidat.getNiveauQualification() == nq){ %>
-                                    <div class="radio">
-                                       <label>
-                                          <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> checked /><%=nq.getIntituleQualification() %>
-                                       </label>
-                                    </div>
-                                 <% }
-                                 else{ %>
-                                    <div class="radio">
-                                       <label>
-                                          <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> /><%=nq.getIntituleQualification() %>
-                                       </label>
-                                    </div>
-                                 <% } %>
-                              <%} %>
-                           </small>
+                        <small>
+                            <% for (NiveauQualification nq : niveauqualif) {
+                                if (candidat.getNiveauQualification() == nq) { %>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="niveau"
+                                           value=<%=nq.getIdQualification() %> checked/><%=nq.getIntituleQualification() %>
+                                </label>
+                            </div>
+                            <% } else { %>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="niveau"
+                                           value=<%=nq.getIdQualification() %>/><%=nq.getIntituleQualification() %>
+                                </label>
+                            </div>
+                            <% } %>
+                            <%} %>
+                        </small>
                     </div>
                 </div>
 
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        <label>Secteur(s) d'activité</label>
-                           <small>
-                              <% for(SecteurActivite s : niveauqualif){
-                                 if(candidat.getNiveauQualification() == nq){ %>
-                                    <div class="radio">
-                                       <label>
-                                          <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> checked /><%=nq.getIntituleQualification() %>
-                                       </label>
-                                    </div>
-                                 <% }
-                                 else{ %>
-                                    <div class="radio">
-                                       <label>
-                                          <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> /><%=nq.getIntituleQualification() %>
-                                       </label>
-                                    </div>
-                                 <% } %>
-                              <%} %>
-                           </small>
-                    </div>
-                </div>
 
                 <div class="col-lg-9">
-                                            <div class="form-group">
-                                                <label>Secteur(s) d'activité</label>
-                                                <small>
-                                                    <table border="0" width="100%">
-                                                        <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
-                                                        <%
-                                                            int i=0;
-                                                            for(SecteurActivite s : secteurActs) {
-                                                                i++;
-                                                                if(i%2 == 0) {
-                                                                    if(candidat.getSecteurActivites() == s){ %>
-                                                                       <div class="checkbox">
-                                                                          <label>
-                                                                             <td>
-                                                                                <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
-                                                                             </td>
-                                                                          </label>
-                                                                       </div>
-                                                                    <% }
-                                                                    else{ %>
-                                                                       <div class="checkbox">
-                                                                          <label>
-                                                                             <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> /><%=nq.getIntituleQualification() %>
-                                                                          </label>
-                                                                       </div>
-                                                                    <% } %>
-                                                        </tr>
-                                                        <%} else{%>
-                                                        <tr>
-                                                            if(candidat.getSecteurActivites() == s){ %>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <td>
-                                                                           <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
-                                                                        </td>
-                                                                    </label>
-                                                                </div>
-                                                            <% }
-                                                            else{ %>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <td>
-                                                                            <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> /><%=nq.getIntituleQualification() %>
-                                                                        </td>
-                                                                    </label>
-                                                                </div>
-                                                            <%}
-                                                        }
-                                      		            if(i%2==1) { %>
-                                                        </tr>
-                                                        <% } %>
-                                                    </table>
-                                                </small>
-                                            </div>
-                                        </div>
+                    <div class="form-group">
+                        <label>Secteur(s) d'activité</label>
+                        <small>
+                            <table border="0" width="100%">
+                                <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
+                                <%
+                                    int i = 0;
+                                    for (SecteurActivite s : secteurActs) {
+                                        i++;
+                                        if (i % 2 == 0) {
+                                            if (candidat.getSecteurActivites() == s) { %>
+                                <div class="checkbox">
+                                    <label>
+                                        <td>
+                                            <input type="checkbox" name="secteur"
+                                                   value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
+                                        </td>
+                                    </label>
+                                </div>
+                                <% } else { %>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="secteur"
+                                               value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite() %>
+                                    </label>
+                                </div>
+                                <% }%>
+                                </tr>
+                                <%} else {%>
+                                <tr>
+                                    <% }%>
+                                    <% if (candidat.getSecteurActivites() == s) { %>
+                                    <div class="checkbox">
+                                        <label>
+                                            <td>
+                                                <input type="checkbox" name="secteur"
+                                                       value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
+                                            </td>
+                                        </label>
+                                    </div>
+                                    <% } else { %>
+                                    <div class="checkbox">
+                                        <label>
+                                            <td>
+                                                <input type="checkbox" name="secteur"
+                                                       value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
+                                            </td>
+                                        </label>
+                                    </div>
+                                    <%
+                                            }
+                                        }
+                                        if (i % 2 == 1) {
+                                    %>
+                                </tr>
+                                <% } %>
+                            </table>
+                        </small>
+                    </div>
+                </div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-success btn-circle btn-lg" name="submit"><i
@@ -224,7 +213,7 @@
             <!-- --------------end modif -->
         </div>
         <%
-        }
+            }
         %>
 
     </div> <!-- /#page-wrapper -->

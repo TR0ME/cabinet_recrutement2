@@ -95,6 +95,8 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
         return c;
     }
 
+
+
     //-----------------------------------------------------------------------------
     public void majSecteursActivites(String[] sects, int idC) {
         SecteurActivite s;
@@ -104,8 +106,8 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
         for (String sect : sects) {
             try {
                 s = secteuractiviteDAO.findById(Integer.parseInt(sect));
-                s.getCandidats().add(c);
-                secteuractiviteDAO.update(s);
+                //s.getCandidats().add(c);
+                //secteuractiviteDAO.update(s);
                 c.getSecteurActivites().add(s);
                 candidatureDAO.update(c);
             } catch (Exception e) {

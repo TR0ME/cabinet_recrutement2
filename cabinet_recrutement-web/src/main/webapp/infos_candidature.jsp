@@ -107,8 +107,7 @@
                             <tr class="warning">
                                 <td><strong>Niveau qualification</strong></td>
                                 <td><%=serviceCandidat.afficherNQ(candidature)%></td>
-
-                                </td>
+                                
                             </tr>
                             <tr class="warning">
                                 <td><strong>Secteur activite</strong></td>
