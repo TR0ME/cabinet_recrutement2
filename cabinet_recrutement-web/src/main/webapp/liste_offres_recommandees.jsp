@@ -27,7 +27,7 @@
     int idNiveauQualificationCandidat = cand.getNiveauQualification().getIdQualification();
     Set<SecteurActivite> setSecteurActiviteCandidat = cand.getSecteurActivites();
 
-    Set<OffreEmploi> listeOffreEmploiRecommandees = offreEmploi.getOffresRecommandees(setSecteurActiviteCandidat,idNiveauQualificationCandidat);
+    List<OffreEmploi> listeOffreEmploiRecommandees = (List<OffreEmploi>) serviceOffreEmploi.getOffresRecommandees(setSecteurActiviteCandidat, idNiveauQualificationCandidat);
 %>
 
 <div class="row">
@@ -43,21 +43,34 @@
                         -->
                         <thead>
                         <tr>
-
-                        <%for(OffreEmploi offreEmploi : listeOffreEmploiRecommandees){ %>
-                                <tr>
-                                   <td>OE_<%=offreEmploi.getIdOffre()%></td>
-                                   <td><%=offreEmploi.getTitre()%></td>
-                                   <td><%=offreEmploi.getDescriptif()%></td>
-                                   <td><%=offreEmploi.getProfilRecherche()%></td>
-                                   <td><%=offreEmploi.getSecteurActivites()%></td>
-                                   <td align="center"><a
-                                                                    href="template.jsp?action=infos_offreEmploi&id=<%=offreEmploi.getIdOffre()%>"><i
-                                                                    class="fa fa-eye fa-lg"></i></a></td>
-                                </tr>
-                            <% } %>
+                            <td><label>ID</label></td>
+                            <td><label>Titre</label></td>
+                            <td><label>Descriptif</label></td>
+                            <td><label>Profil recherche</label></td>
+                            <td><label>Secteur Activité</label></td>
                         </tr>
                         </thead>
+                        <tr>
+
+                                <%for(OffreEmploi offreEmploi : listeOffreEmploiRecommandees){ %>
+                        <tr>
+                            <td>OE_<%=offreEmploi.getIdOffre()%>
+                            </td>
+                            <td><%=offreEmploi.getTitre()%>
+                            </td>
+                            <td><%=offreEmploi.getDescriptif()%>
+                            </td>
+                            <td><%=offreEmploi.getProfilRecherche()%>
+                            </td>
+                            <td><%=offreEmploi.getSecteurActivites()%>
+                            </td>
+                            <td align="center"><a
+                                    href="template.jsp?action=infos_offreEmploi&id=<%=offreEmploi.getIdOffre()%>"><i
+                                    class="fa fa-eye fa-lg"></i></a></td>
+                        </tr>
+                        <% } %>
+                        </tr>
+
                         <!--
                           Contenu du tableau
                         -->

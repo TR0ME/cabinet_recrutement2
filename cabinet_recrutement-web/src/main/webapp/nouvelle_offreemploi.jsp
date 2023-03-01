@@ -58,7 +58,7 @@
 
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> /><%=nq.getIntituleQualification() %>
+                                            <input type="radio" name="niveau" value="<%=nq.getIdQualification()%>" /><%=nq.getIntituleQualification() %>
                                         </label>
                                     </div>
                                     <%} %>
@@ -78,13 +78,13 @@
                                                 if(i%2 == 0) {%>
 
                                         <td>
-                                            <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
+                                            <input type="checkbox" name="secteur" value="<%=s.getIdSecteur()%>" /><%=s.getIntituleActivite()%>
                                         </td>
                                         </tr>
                                         <%} else{%>
                                         <tr>
                                             <td>
-                                                <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
+                                                <input type="checkbox" name="secteur" value="<%=s.getIdSecteur()%>" /><%=s.getIntituleActivite()%>
                                             </td>
 
                                             <%} %>
@@ -131,7 +131,7 @@
                     String profile_recherche = request.getParameter("profile_recherche");
                     String secteur_activite = request.getParameter("secteur_activite");
                     String profilRecherche = request.getParameter("description_profile_recherche");
-                    serviceCandidat.findNQByID(Integer.parseInt(request.getParameter("niveau"));
+                    NiveauQualification nq = serviceCandidat.findNQByID(Integer.parseInt(request.getParameter("niveau")));
 
                     List<SecteurActivite> secteurActivite = (List<SecteurActivite>) serviceSecteur.getSecteurActivite(Integer.parseInt(request.getParameter("secteur")));
 
@@ -144,7 +144,7 @@
                           col-xs-12">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            Nouvelle entreprise r�f�renc�e
+                            Nouvelle offre Emploi
                         </div>
                         <div class="panel-body">
                             <small>

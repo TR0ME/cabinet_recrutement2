@@ -36,41 +36,6 @@
     //action/=nouvelle_offre&titre=azdazd&descriptif_mission=azdazd&profil_recherche=azdazdazd&niveau=1&secteur=1&submit-insertion=#
 %>
 
-<%
-    if (request.getParameter("submit-insertion") != null) {
-        if (request.getParameter("titre").length() > 0
-                && request.getParameter("descriptif_mission").length() > 0
-                && request.getParameter("profil_recherche").length() > 0
-                && request.getParameter("niveau").length() > 0
-                && request.getParameter("secteur").length() > 0) {
-
-            OffreEmploi of_ok = new OffreEmploi(
-                    serviceOffreEmploi.getCurrentDate(),
-                    request.getParameter("descriptif_mission"),
-                    request.getParameter("profil_recherche"),
-                    request.getParameter("titre"),
-                    entX,
-                    serviceOffreEmploi.findNQByID(Integer.parseInt(request.getParameter("niveau")))
-            );
-
-            try {
-                of_ok = serviceOffreEmploi.addOffre(of_ok);
-                entX.getOffreEmploi().add(of_ok);
-                entX = serviceEntreprise.execUpdate(entX);
-                serviceOffreEmploi.majSecteursActivites(request.getParameterValues("secteur"), of_ok.getIdOffre());
-                entX = serviceEntreprise.getEntreprise(entX.getId());
-                session.setAttribute("utilisateur", entX);
-                System.out.println("<h1 style=\"color: green;text-align: center\"> offre ajoutée ! </h1>");
-
-            } catch (Exception e) {
-                System.out.println("<h1 style=\"color: red;text-align: center\"> Erreur lors de l'ajout  ! </h1>");
-
-            }
-
-
-        }
-    }
-%>
 
 <body>
 <jsp:include page="fragments/head.html"/>
@@ -96,12 +61,55 @@
                 </h3>
             </div>
             <!-- /.panel-heading -->
+            <%
+                if (request.getParameter("submit-insertion") != null) {
+                    if (request.getParameter("titre").length() > 0
+                            && request.getParameter("descriptif_mission").length() > 0
+                            && request.getParameter("profil_recherche").length() > 0
+                            && request.getParameter("niveau").length() > 0
+                            && request.getParameter("secteur").length() > 0) {
+
+                        OffreEmploi of_ok = new OffreEmploi(
+                                serviceOffreEmploi.getCurrentDate(),
+                                request.getParameter("descriptif_mission"),
+                                request.getParameter("profil_recherche"),
+                                request.getParameter("titre"),
+                                entX,
+                                serviceOffreEmploi.findNQByID(Integer.parseInt(request.getParameter("niveau"))));
+            %>
+            <h1>Premiere partie de l'offre ajoutée</h1>
+            <%
+
+                try {
+                    of_ok = serviceOffreEmploi.addOffre(of_ok);
+                    entX.getOffreEmploi().add(of_ok);
+                    entX = serviceEntreprise.execUpdate(entX);
+                    //TODO Ligne qui fait tout planté(caca ICI) A debeug de toute urgence
+                    serviceOffreEmploi.majSecteursActivites(request.getParameterValues("secteur"), of_ok.getIdOffre());
+            %>
+            <h1>Seconde parie de l'offre ajoutée</h1>
+            <%
+                    entX = serviceEntreprise.getEntreprise(entX.getId());
+                    session.setAttribute("utilisateur", entX);
+                    //System.out.println("<h1 style=\"color: green;text-align: center\"> offre ajoutée ! </h1>");
+                } catch (Exception e) {
+            %>
+            <h1>[ERROR]Lors de l'ajout</h1>
+            <%
+                            //System.out.println("<h1 style=\"color: red;text-align: center\"> Erreur lors de l'ajout  ! </h1>");
+
+                        }
+
+
+                    }
+                }
+            %>
             <div class="panel-body">
 
                 <div
                         class="col-lg-offset-2 col-lg-8
                         col-xs-12">
-                    <form role="form" action="template.jsp" method="get">
+                    <form role="form" action="nouvelle_offre.jsp" method="get">
                         <input type="hidden" name="action" value="nouvelle_offre"/>
                         <div class="form-group">
                             <input class="form-control" placeholder="Titre de l'offre"

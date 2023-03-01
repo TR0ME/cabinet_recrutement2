@@ -86,4 +86,5 @@ public interface IServiceOffreEmploi extends IServicesGlobal
     public OffreEmploi nouvelleOffreEmploi(String titre,String descriptif,String profilRecherche,List<SecteurActivite> secteurActivite, NiveauQualification niveauQualification, Entreprise entreprise);
 
 
+    public List<OffreEmploi> getOffresRecommandees(Set<SecteurActivite> setSecteurActiviteCandidat, int idNiveauQualification);
 }

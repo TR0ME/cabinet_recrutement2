@@ -80,6 +80,8 @@ public class OffreEmploi implements java.io.Serializable {
         this.profilRecherche = profilRecherche;
         this.entreprise = entrepirse;
         this.niveauQualification = nq;
+        this.titre = titre;
+        //this.secteurActivites = new HashSet<>(lst);
     }
 
 
