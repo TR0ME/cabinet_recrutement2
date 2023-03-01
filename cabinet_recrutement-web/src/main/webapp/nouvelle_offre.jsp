@@ -123,7 +123,7 @@
 
                                     <div class="radio">
                                         <label> <input type="radio" name="niveau"
-                                                       value=<%=nq.getIdQualification() %>/><%=nq.getIntituleQualification() %>
+                                                       value="<%=nq.getIdQualification() %>"><%=nq.getIntituleQualification() %>
                                         </label>
                                     </div>
                                     <%} %>
@@ -142,13 +142,13 @@
                                             if (i % 2 == 0) {%>
 
                                     <td><input type="checkbox" name="secteur"
-                                               value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
+                                               value="<%=s.getIdSecteur() %> "><%=s.getIntituleActivite()%>
                                     </td>
                                     </tr>
                                     <%} else {%>
                                     <tr>
                                         <td><input type="checkbox" name="secteur"
-                                                   value=<%=s.getIdSecteur()%>/><%=s.getIntituleActivite()%>
+                                                   value="<%=s.getIdSecteur() %>"><%=s.getIntituleActivite()%>
                                         </td>
 
                                             <%} %>
