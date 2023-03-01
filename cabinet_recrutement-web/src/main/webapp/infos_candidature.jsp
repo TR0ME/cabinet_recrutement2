@@ -10,8 +10,13 @@
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidat" %>
 <%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.Candidat" %>
+<%@ page import="eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification" %>
+<%@ page import="java.util.Set" %>
 <%
     IServiceCandidat serviceCandidat = null;
+
+
+
     try {
         serviceCandidat = (IServiceCandidat) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidat");
     } catch (Exception e) {
@@ -101,7 +106,7 @@
                             </tr>
                             <tr class="warning">
                                 <td><strong>Niveau qualification</strong></td>
-                                <td>Supprime car fait plante le system</td>
+                                <td><%=serviceCandidat.afficherNQ(candidature)%></td>
 
                                 </td>
                             </tr>
@@ -133,3 +138,4 @@
     </div> <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+

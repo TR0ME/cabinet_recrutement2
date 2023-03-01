@@ -87,7 +87,7 @@ public class Candidat  implements java.io.Serializable {
         this.idCandidat = idCandidat;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="no_qualification")
     public NiveauQualification getNiveauQualification() {
         return this.niveauQualification;

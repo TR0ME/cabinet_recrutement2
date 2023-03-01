@@ -106,4 +106,6 @@ public interface IServiceCandidat extends IServicesGlobal
      * @return Candidature
      */
     public Candidat RAZsecteurs(int idC);
+
+    public String afficherNQ(Candidat cand);
 }

@@ -50,7 +50,7 @@
             <% Candidat cand = (Candidat) session.getAttribute("candidat"); %>
             <li><a href="template.jsp?action=infos_candidature&id=<%=cand.getIdCandidat()%>">Mon profil candidat</a>
             </li>
-            <li><a href="liste_offres_recommandees.jsp">Consulter les offres recommandées</a></li>
+            <li><a href="template.jsp?action=liste_offres_recommandees">Consulter les offres recommandées</a></li>
             <li><a href="maj_candidature.jsp">Mise a jour d'une candidature</a></li>
             <li><a href="deconnexion.jsp">Se déconnecter</a></li>
             <%

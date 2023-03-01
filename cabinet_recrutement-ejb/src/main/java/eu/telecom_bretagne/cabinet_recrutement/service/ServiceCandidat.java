@@ -192,4 +192,9 @@ public class ServiceCandidat extends ServicesGlobal implements IServiceCandidat 
         }
 
     }
+
+    public String afficherNQ(Candidat cand){
+        NiveauQualification nqs = cand.getNiveauQualification();
+        return nqs.getIntituleQualification();
+    }
 }
