@@ -73,6 +73,7 @@
         <div class="col-lg-offset-2 col-lg-8
                         col-xs-12">
             <form role="form" action="maj_candidature.jsp" method="get">
+            <!-- --------------start modif---------------------------------------------------------- -->
                 <input type="hidden" name="ID" value=" <%=candidat.getIdCandidat()%>"/>
                 <div class="form-group">
                     <label>ID : <%=candidat.getIdCandidat()%>
@@ -103,12 +104,73 @@
                     <textarea class="form-control" placeholder="Descriptif de l'entreprise" rows="5"
                               name="CV"><%=Utils.text2HTML(candidat.getCv())%> </textarea>
                 </div>
+
+                <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label>Niveau de qualification</label>
+                                                <small>
+                                                    <% for(NiveauQualification nq : niveauqualif){%>
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="niveau" value=<%=nq.getIdQualification() %> /><%=nq.getIntituleQualification() %>
+                                                        </label>
+                                                    </div>
+                                                    <%} %>
+                                                </small>
+                                            </div>
+                                        </div>
+
+
+
+
+                <div class="col-lg-9">
+                                            <div class="form-group">
+                                                <label>Secteur(s) d'activité</label>
+                                                <small>
+                                                    <table border="0" width="100%">
+                                                        <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
+                                                        <%
+                                                            int i=0;
+                                                            for(SecteurActivite s : secteurActs) {
+                                                                i++;
+                                                                if(i%2 == 0) {%>
+
+                                                        <td>
+                                                            <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
+                                                        </td>
+                                                        </tr>
+                                                        <%} else{%>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="checkbox" name="secteur" value=<%=s.getIdSecteur()%> /><%=s.getIntituleActivite()%>
+                                                            </td>
+
+                                                                <%} %>
+                                                                <%}
+                                      		            if(i%2==1) { %>
+                                                        </tr>
+                                                        <%
+                                                            }
+                                                        %>
+
+                                                    </table>
+                                                </small>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-success btn-circle btn-lg" name="submit"><i
                             class="fa fa-check"></i></button>
                     <button type="reset" class="btn btn-warning btn-circle btn-lg"><i class="fa fa-times"></i></button>
                 </div>
             </form>
+            <!-- --------------end modif -->
         </div>
         <%
         }
