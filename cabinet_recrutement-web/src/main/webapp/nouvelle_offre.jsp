@@ -87,7 +87,7 @@
                     //TODO Ligne qui fait tout planté(caca ICI) A debeug de toute urgence
                     serviceOffreEmploi.majSecteursActivites(request.getParameterValues("secteur"), of_ok.getIdOffre());
             %>
-            <h1>Seconde parie de l'offre ajoutée</h1>
+            <h1>Seconde partie de l'offre ajoutée</h1>
             <%
                     entX = serviceEntreprise.getEntreprise(entX.getId());
                     session.setAttribute("utilisateur", entX);
@@ -150,13 +150,13 @@
                                             if (i % 2 == 0) {%>
 
                                     <td><input type="checkbox" name="secteur"
-                                               value="<%=s.getIdSecteur() %> "><%=s.getIntituleActivite()%>
+                                               value="<%=s.getIdSecteur()%>"><%=s.getIntituleActivite()%>
                                     </td>
                                     </tr>
                                     <%} else {%>
                                     <tr>
                                         <td><input type="checkbox" name="secteur"
-                                                   value="<%=s.getIdSecteur() %>"><%=s.getIntituleActivite()%>
+                                                   value="<%=s.getIdSecteur()%>"><%=s.getIntituleActivite()%>
                                         </td>
 
                                             <%} %>
